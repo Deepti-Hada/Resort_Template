@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { BrowserRouter,Routes,Route} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Style.css'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import Navbar from './Components/Navbar.js'
+import Footer from './Components/Footer.js'
+import Home from './Components/Home.js'
+import Roomsingle from './Components/Roomsingle.js'
+import Cart from './Components/Cart.js'
+
 
 function App() {
+    useEffect(() => {
+        AOS.init();
+      }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route index element={ <Home />} /> 
+        <Route path="/Home" element={ <Home />} ></Route>
+        <Route path="/Roomsingle" element={ <Roomsingle />} ></Route>
+        <Route path="/Cart" element={ <Cart />} ></Route>
+
+      </Routes>
+      <Footer />
+      </BrowserRouter>
+    
   );
 }
 
